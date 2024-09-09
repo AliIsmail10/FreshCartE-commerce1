@@ -1,0 +1,72 @@
+<div class="container w-10/12 mx-auto my-10 flex">
+
+
+
+
+    <div class="w-3/4 main">
+        
+    <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide>
+        <img src="./assets/images/main-slider-1.jpeg" class="w-full" alt="">
+        </ng-template>  
+      <ng-template carouselSlide>
+        <img src="./assets/images/slider-image-1.jpeg" class="w-full" alt="">
+
+      </ng-template>  
+      <ng-template carouselSlide>
+        <img src="./assets/images/slider-image-3.jpeg" class="w-full" alt="">
+
+      </ng-template>  
+    </owl-carousel-o>
+
+    </div>
+    <div class="w-1/4 child">
+        <img src="./assets/images/slider-image-1.jpeg" class="w-full" alt="">
+        <img src="./assets/images/slider-image-3.jpeg" class="w-full" alt="">
+    </div>
+</div>
+
+
+
+<div class="max-w-md mx-auto">   
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+    <div class="relative">
+        <input [(ngModel)]="searchTerm" type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-200 focus:border-green-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-200 dark:focus:border-green-200" placeholder= "Women ,Man , Electroinc..." required />
+        <button type="submit" class="text-white absolute end-2.5 bottom-1.5 btn-main  ">Search</button>
+    </div>
+</div>
+
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 container w-10/12 mx-auto my-10">
+    @for (product of sharedService.productList() | filter:searchTerm ; track $index) {
+        <div class="product h-full relative group w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col" title="{{product.title}}">
+            <div class="flex items-center mb-4 z-40" (click)="toggleWishlist(product._id, $event)">
+                <i class="fa-regular fa-heart absolute right-3 top-3 cursor-pointer z-20 text-2xl"
+                [ngStyle]="{ color: sharedService.isProductInWishlist(product.id) ? 'red' : 'gray' }"
+                (click)="toggleWishlist(product.id, $event)"></i>
+              </div>
+                
+            <div [routerLink]="['/productdetails', product._id]" class="">
+     <div>
+     </div>
+            <img class="p-8 rounded-t-lg" [src]="product.imageCover" alt="product image" />
+            <div class="px-5 pb-5 flex-grow">
+                <div>
+                    <h5 class="text-main text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{product.category.name}}</h5>
+                    <h5 class="text-sm m-3 font-semibold tracking-tight text-gray-900 dark:text-white">{{product.title.split(" " ,4).join(" ")}}</h5>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-1xl font-bold text-gray-900 dark:text-white">{{product.price}} EGP</span>
+                    <i class="fa-solid fa-star rating-color ">{{product.ratingsAverage}}</i>
+                </div>
+            </div>
+           </div>
+
+            <button class="btn-main  mt-auto m-3" (click)="addProductToCart(product._id)">
+                @if(sharedService.isLoding){
+                 <i class="fa fa-spinner fa-spin"></i>
+                }
+                {{'Add product' | translate}}</button>
+        </div>
+    }
+</div>

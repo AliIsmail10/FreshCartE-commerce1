@@ -1,0 +1,41 @@
+ <div class="w-3/4 mx-auto flex justify-center items-center">
+    <div class="w-1/4 p-5">
+
+    <div>
+        <owl-carousel-o [options]="customOptions">
+
+
+            @for (item of productDetail?.images; track $index) {
+
+                <ng-template carouselSlide>
+                    <img [src]="item">
+                  </ng-template>
+            }
+              
+        
+          </owl-carousel-o>
+    </div>
+    </div>
+    <div class="w-3/4">
+        
+        <div>
+        <h5 class="text-main">{{productDetail?.title}}</h5>
+        <p class="my-3 text-sm text-gray-400 ">{{productDetail?.description}}</p>
+        <h3 class="text-main">{{productDetail?.category?.name}}</h3>
+        <div class="flex justify-between mt-2">
+            <h3 class="my-4">{{productDetail?.price}} <i>EPG</i></h3>
+    <span><i class="fa-solid fa-star rating-color"></i>{{productDetail?.ratingsAverage}}</span>
+        </div>
+
+        <button class="btn-main  mt-auto mt-4" (click)="addProductToCard(productDetail._id)">
+            @if(isLoding){
+             <i class="fa fa-spinner fa-spin"></i>
+            }
+            Add product</button>
+        </div>
+    </div>
+
+</div>
+
+
+

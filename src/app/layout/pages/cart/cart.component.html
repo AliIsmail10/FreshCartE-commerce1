@@ -1,0 +1,58 @@
+<div class="w-3/4 mx-auto bg-slate-100 p-16 my-6">
+ 
+<div class="flex justify-evenly items-center">
+
+    
+   @if(cartItems?.data?.totalCartPrice){
+    <div class="text-center">
+        <h2 class="mb-4 text-3xl">Shop Cart :</h2>
+        <h5 class="text-main">Total Cart Price: <b>{{cartItems?.data?.totalCartPrice ?  cartItems.data.totalCartPrice : "0.0"}} </b></h5>
+    
+    </div>
+    <button type="button" class= "group text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"  (click)="resetCart()">
+        <i class="cursor-pointer fa fa-trash-alt text-red-700 group-hover:text-white me-1"></i>
+    Reset Cart</button>
+   }
+
+</div>
+  @if (cartItems?.data?.totalCartPrice) {
+    
+<button type="button"  class="btn-main block mx-auto my-4 w-1/4"
+
+[routerLink]="['/checkout', cartItems?.cartId]"
+>Check Out</button>
+  }
+
+
+   @for (product of cartItems?.data?.products; track $index) {
+
+
+     <div class="my-8">
+        <div class="flex mx-auto  justify-center items-center">
+    <div class="w-2/12">
+    <img [src]="product.product.imageCover" class="w-44 m-4" alt="" [title]="product.product.title">
+    </div>
+    <div class="w-7/12 ms-8">
+        <h2>{{product.product.title}}</h2>
+        <h3>Price {{product.price}}</h3>
+        <i class="cursor-pointer fa fa-trash-alt text-red-700" (click)="RemoveSpecificCartItem(product.product._id)"></i>
+    </div>
+    <div class="w-3/12 flex items-center">
+        <div class="group">
+            <i class="fa-solid fa-plus-square cursor-pointer group-hover:text-green-400" (click)="udateQuantity(product.product._id, product.count+1)"></i>
+        </div>
+        <span class="mx-2">{{product.count}}</span>
+        <div class="group">
+            <i class="fa-solid fa-minus-square cursor-pointer group-hover:text-red-600"  (click)="udateQuantity(product.product._id, product.count-1)" ></i>
+        </div>
+    </div>
+    
+    
+</div>
+     </div>
+     <hr class="mx-auto   rounded">
+   }
+   @empty {
+    <img src="./assets/images/green-cart-1243336210.jpg" class="mt-10 w-72 block mx-auto" alt="">
+   }
+</div>

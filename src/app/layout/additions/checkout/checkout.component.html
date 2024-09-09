@@ -1,0 +1,27 @@
+<div class="w-3/4 mx-auto ">
+
+    <form [formGroup]="cartFrom" (ngSubmit)="payment()">
+        
+<div class="mb-6">
+    <label  for="large-input" class="text-main block mb-2 text-sm font-medium text-gray-900 dark:text-white">Details</label>
+    <input formControlName="details" type="text" id="large-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+</div>
+<div class="mb-6">
+    <label for="default-input" class="text-main block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
+    <input formControlName="city" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+</div>
+<div>
+    <label for="small-input" class="text-main block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
+    <input formControlName="phone" type="text" id="small-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+</div>
+<button [disabled]="cartFrom.invalid"  type="submit" class="btn-main block mx-auto my-4 w-1/4">
+
+   @if(isLoading){
+    <i class="fa fa-spinner fa-spin"></i>
+   }
+    Payment</button>
+
+    </form>
+</div>

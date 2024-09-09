@@ -1,0 +1,26 @@
+<div class="w-3/4 mx-auto flex justify-center items-center">
+    <div class="w-1/4 p-5">
+
+    <div>
+        <img [src]="DetailsBrands?.image" class="w-full" alt="">
+
+    </div>
+    </div>
+    <div class="w-3/4">
+        
+        <div>
+        <h2>name: <i class="text-main">{{DetailsBrands?.name}}</i></h2>
+        <p class="my-3">slug:  <i class="text-main">{{DetailsBrands?.slug}}</i></p>
+        <h3 class="">
+            Created At: <i class="text-main">{{ DetailsBrands?.createdAt ? DetailsBrands.createdAt.split("T")[0] : ' ' }}</i>
+          </h3>
+          
+       <h3 class="my-4">Updated At: <i class="text-main">{{DetailsBrands?.updatedAt ? DetailsBrands.updatedAt.split("T")[0] :" " }}</i></h3>
+
+        </div>
+    </div>
+
+</div>
+
+
+
