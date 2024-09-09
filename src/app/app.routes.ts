@@ -1,9 +1,12 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { authGuard } from './shared/guards/auth.guard';
 import { LoginComponent } from './layout/pages/login/login.component';
 import { ForgetPasswordComponent } from './layout/additions/forget-password/forget-password.component';
 import { RegisterComponent } from './layout/pages/register/register.component';
+import { NgModule } from '@angular/core';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 
 export const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -28,3 +31,11 @@ export const routes: Routes = [
 
     
 ];
+
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
+    providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }]
+  })
+  export class AppRoutingModule { }
