@@ -9,7 +9,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 export const routes: Routes = [
-    {path: '', redirectTo: 'home', pathMatch: 'full'},
+    {path: '', redirectTo: 'register', pathMatch: 'full'},
     {path: 'home', loadComponent:()=>import('./layout/pages/home/home.component').then(m=>m.HomeComponent) ,canActivate:[authGuard],title: 'Home'},
     {path: 'brands', loadComponent:()=>import('./layout/pages/brands/brands.component').then(m=>m.BrandsComponent) ,canActivate:[authGuard],title: 'Brands'},
     {path: 'cart', loadComponent:()=>import('./layout/pages/cart/cart.component').then(m=>m.CartComponent) ,canActivate:[authGuard],title: 'Cart'},
